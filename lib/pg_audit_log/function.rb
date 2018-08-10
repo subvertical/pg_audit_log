@@ -43,7 +43,7 @@ module PgAuditLog
         end
       end
 
-      def install(only_audit_schema=nil)
+      def install(only_audit_schema='public')
         schema_restriction = only_audit_schema ? "AND table_schema = '#{only_audit_schema}'" : ""
         execute <<-SQL
         CREATE OR REPLACE PROCEDURAL LANGUAGE plpgsql;
