@@ -4,7 +4,7 @@ require 'pg_audit_log/version'
 
 Gem::Specification.new do |spec|
   spec.name        = 'pg_audit_log'
-  spec.version     = 1.0.0
+  spec.version     = '1.0.0'
   spec.authors     = ['Case Commons, LLC']
   spec.email       = ['casecommons-dev@googlegroups.com', 'andrew@johnandrewmarshall.com']
   spec.homepage    = 'https://github.com/Casecommons/pg_audit_log'
