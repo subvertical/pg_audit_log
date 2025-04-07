@@ -67,7 +67,7 @@ class PgAuditLog::Entry < ActiveRecord::Base
         $$
         LANGUAGE plpgsql;
 
-        CREATE TRIGGER OR REPLACE insert_audit_log_trigger
+        CREATE OR REPLACE TRIGGER insert_audit_log_trigger
           BEFORE INSERT ON audit_log
           FOR EACH ROW EXECUTE PROCEDURE audit_log_insert_trigger();
       SQL
