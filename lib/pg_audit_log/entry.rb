@@ -19,11 +19,11 @@ class PgAuditLog::Entry < ActiveRecord::Base
 
     def install
       sql = <<-SQL
-        CREATE SEQUENCE #{self.table_name}_id_seq
+        CREATE SEQUENCE IF NOT EXISTS #{self.table_name}_id_seq
             START WITH 1
             INCREMENT BY 1;
 
-        CREATE TABLE #{self.table_name} (
+        CREATE TABLE IF NOT EXISTS #{self.table_name} (
             id bigint PRIMARY KEY DEFAULT nextval('#{self.table_name}_id_seq'),
             user_id integer,
             user_unique_name character varying(255),
@@ -67,7 +67,7 @@ class PgAuditLog::Entry < ActiveRecord::Base
         $$
         LANGUAGE plpgsql;
 
-        CREATE TRIGGER insert_audit_log_trigger
+        CREATE TRIGGER OR REPLACE insert_audit_log_trigger
           BEFORE INSERT ON audit_log
           FOR EACH ROW EXECUTE PROCEDURE audit_log_insert_trigger();
       SQL
